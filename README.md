@@ -1,3 +1,3 @@
 # T Y P E S
-[x] LamportKeyPair
-[x] RandPair
+[x] - LamportKeyPair
+[x] - RandPair
