@@ -51,8 +51,6 @@ export const startTimer = () => {
     }
 }
 
-export const hash = (input: string) => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(input))
-export const hash_b = (input: string) => ethers.utils.keccak256(input)
 
 export function deepFreeze(object: any) {
     // Retrieve the property names defined on object
@@ -78,6 +76,9 @@ export function cpylck(obj: any) {
     return deepFreeze(JSON.parse(JSON.stringify(obj)))
 }
 
+
+export const hash = (input: string) => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(input))
+export const hash_b = (input: string) => ethers.utils.keccak256(input)
 
 /**
  * @name verify_signed_hash
