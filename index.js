@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Lamport = exports.pubFromPri = exports.sign_hash = exports.is_private_key = exports.mk_key_pair = exports.verify_signed_hash = exports.cpylck = exports.df = exports.deepFreeze = exports.hash_b = exports.hash = exports.unzipN = void 0;
+exports.Lamport = exports.pubFromPri = exports.sign_hash = exports.is_private_key = exports.mk_key_pair = exports.verify_signed_hash = exports.hash_b = exports.hash = exports.cpylck = exports.df = exports.deepFreeze = exports.startTimer = exports.unzipN = void 0;
 const ethers_1 = require("ethers");
 const bignumber_js_1 = __importDefault(require("bignumber.js"));
 const crypto_1 = require("crypto");
@@ -25,10 +25,18 @@ function unzipN(arr) {
         .map((_, k) => arr2[k][i]));
 }
 exports.unzipN = unzipN;
-const hash = (input) => ethers_1.ethers.utils.keccak256(ethers_1.ethers.utils.toUtf8Bytes(input));
-exports.hash = hash;
-const hash_b = (input) => ethers_1.ethers.utils.keccak256(input);
-exports.hash_b = hash_b;
+/**
+ *  @name startTimer
+ *  @author William Doyle
+ */
+const startTimer = () => {
+    const start = new Date().getTime();
+    return () => {
+        const end = new Date().getTime();
+        return (end - start) / 1000;
+    };
+};
+exports.startTimer = startTimer;
 function deepFreeze(object) {
     // Retrieve the property names defined on object
     const propNames = Object.getOwnPropertyNames(object);
@@ -50,6 +58,10 @@ function cpylck(obj) {
     return deepFreeze(JSON.parse(JSON.stringify(obj)));
 }
 exports.cpylck = cpylck;
+const hash = (input) => ethers_1.ethers.utils.keccak256(ethers_1.ethers.utils.toUtf8Bytes(input));
+exports.hash = hash;
+const hash_b = (input) => ethers_1.ethers.utils.keccak256(input);
+exports.hash_b = hash_b;
 /**
  * @name verify_signed_hash
  * @author William Doyle

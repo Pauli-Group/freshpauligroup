@@ -10,11 +10,16 @@ export declare type KeyPair = {
 };
 export declare type Sig = string[];
 export declare function unzipN<Type>(arr: Type[][]): Type[][];
-export declare const hash: (input: string) => string;
-export declare const hash_b: (input: string) => string;
+/**
+ *  @name startTimer
+ *  @author William Doyle
+ */
+export declare const startTimer: () => () => number;
 export declare function deepFreeze(object: any): any;
 export declare function df(object: any): any;
 export declare function cpylck(obj: any): any;
+export declare const hash: (input: string) => string;
+export declare const hash_b: (input: string) => string;
 /**
  * @name verify_signed_hash
  * @author William Doyle
